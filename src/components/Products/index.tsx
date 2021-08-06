@@ -5,8 +5,7 @@ import Line from "./Line";
 export interface ProductsProps {}
 
 const Products: React.FC<ProductsProps> = () => {
-  const { products, setProducts } = useContext(ProductsContext);
-  console.log(products);
+  const { products } = useContext(ProductsContext);
   return (
     <div>
       <div>
@@ -24,15 +23,18 @@ const Products: React.FC<ProductsProps> = () => {
           </thead>
           <tbody>
             {products.map(
-              (product: {
-                name: string;
-                ean: string;
-                type: string;
-                weight: string;
-                color: string;
-                active: boolean;
-              }) => (
-                <Line product={product} />
+              (
+                product: {
+                  name: string;
+                  ean: string;
+                  type: string;
+                  weight: string;
+                  color: string;
+                  active: boolean;
+                },
+                index: number
+              ) => (
+                <Line key={index} product={product} />
               )
             )}
           </tbody>

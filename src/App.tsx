@@ -58,6 +58,30 @@ const App: React.FC = () => {
     }
   }
 
+  function updateProduct(newVersion: {
+    name: string;
+    ean: string;
+    type: string;
+    weight: string;
+    color: string;
+    active: boolean;
+  }): boolean {
+    const currentProduct = products.filter(
+      (product) => product.ean === newVersion.ean
+    );
+    if (JSON.stringify(currentProduct) !== JSON.stringify(newVersion)) {
+      const indexToUpdate = products.findIndex(
+        (product) => product.ean === newVersion.ean
+      );
+      products[indexToUpdate] = newVersion;
+      setProducts(products);
+
+      return true;
+    }
+
+    return false;
+  }
+
   return (
     <ProductsContext.Provider
       value={{
@@ -65,6 +89,7 @@ const App: React.FC = () => {
         deleteProduct: deleteProduct,
         products: products,
         setProducts: setProducts,
+        updateProduct,
       }}
     >
       <Navigation />

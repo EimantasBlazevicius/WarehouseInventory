@@ -20,6 +20,16 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
     }
   }
 
+  function handleSubmitFake() {
+    if (
+      createProduct("TestProduct", "1236547894312", "type", "weight", "color")
+    ) {
+      console.log("Good");
+    } else {
+      console.log("Bad");
+    }
+  }
+
   return (
     <>
       <form>
@@ -106,6 +116,14 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           onClick={() => handleSubmit()}
         >
           Create
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => handleSubmitFake()}
+        >
+          CreateFake
         </button>
       </form>
     </>

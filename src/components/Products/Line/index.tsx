@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "../../commmon/Button";
+import ProductsContext from "../../../context/ProductsContext";
 
 export interface LineProps {
   product: {
@@ -14,6 +15,14 @@ export interface LineProps {
 
 const Line: React.FC<LineProps> = ({ product }) => {
   const [checked, setChecked] = useState<boolean>(product.active);
+  const { updateProduct } = useContext(ProductsContext);
+
+  function handleCheckbox(): void {
+    const newVersion = product;
+    newVersion.active = !checked;
+    updateProduct(newVersion);
+    setChecked(!checked);
+  }
 
   return (
     <tr>
@@ -26,9 +35,7 @@ const Line: React.FC<LineProps> = ({ product }) => {
         <input
           type="checkbox"
           defaultChecked={checked}
-          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
-            setChecked(!checked)
-          }
+          onChange={() => handleCheckbox()}
         />
       </td>
       <td>
