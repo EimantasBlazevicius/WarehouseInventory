@@ -3,7 +3,6 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import ProductsContext from "./context/ProductsContext";
-// import bootstrap from "bootstrap";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import EditProduct from "./components/EditProduct";
@@ -40,6 +39,7 @@ const App: React.FC = () => {
     };
     try {
       setProducts([...products, newProduct]);
+
       return true;
     } catch {
       return false;
@@ -85,10 +85,10 @@ const App: React.FC = () => {
   return (
     <ProductsContext.Provider
       value={{
-        createProduct: createProduct,
-        deleteProduct: deleteProduct,
-        products: products,
-        setProducts: setProducts,
+        createProduct,
+        deleteProduct,
+        products,
+        setProducts,
         updateProduct,
       }}
     >

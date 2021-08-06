@@ -21,8 +21,18 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
   }
 
   function handleSubmitFake() {
+    function getRandomInt(max: number) {
+      return Math.floor(Math.random() * max);
+    }
+
     if (
-      createProduct("TestProduct", "1236547894312", "type", "weight", "color")
+      createProduct(
+        "TestProduct",
+        getRandomInt(999999).toString(),
+        "type",
+        "weight",
+        "color"
+      )
     ) {
       console.log("Good");
     } else {
