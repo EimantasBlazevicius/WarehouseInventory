@@ -8,6 +8,8 @@ export interface LineProps {
     ean: string;
     type: string;
     weight: string;
+    quantity: number;
+    price: number;
     color: string;
     active: boolean;
   };
@@ -30,6 +32,8 @@ const Line: React.FC<LineProps> = ({ product }) => {
       <td>{product.ean}</td>
       <td>{product.type}</td>
       <td>{product.weight}</td>
+      <td>{product.quantity}</td>
+      <td>{product.price}</td>
       <td>{product.color}</td>
       <td>
         <input

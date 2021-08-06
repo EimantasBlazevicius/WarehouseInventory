@@ -12,7 +12,16 @@ import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   const [products, setProducts] = useLocalStorage("products", [
-    { name: "", ean: "", type: "", weight: "", color: "", active: true },
+    {
+      name: "",
+      ean: "",
+      type: "",
+      weight: "",
+      color: "",
+      quantity: 0,
+      price: 0,
+      active: true,
+    },
   ]);
 
   function createProduct(
@@ -20,7 +29,9 @@ const App: React.FC = () => {
     ean: string,
     type: string,
     weight: string,
-    color: string
+    color: string,
+    quantity: number,
+    price: number
   ): boolean {
     const newProduct: {
       name: string;
@@ -28,6 +39,8 @@ const App: React.FC = () => {
       type: string;
       weight: string;
       color: string;
+      quantity: number;
+      price: number;
       active: boolean;
     } = {
       name: name,
@@ -35,6 +48,8 @@ const App: React.FC = () => {
       type: type,
       weight: weight,
       color: color,
+      quantity: quantity,
+      price: price,
       active: true,
     };
     try {
@@ -64,6 +79,8 @@ const App: React.FC = () => {
     type: string;
     weight: string;
     color: string;
+    quantity: number;
+    price: number;
     active: boolean;
   }): boolean {
     const currentProduct = products.filter(

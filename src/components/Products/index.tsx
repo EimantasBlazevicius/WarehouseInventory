@@ -16,6 +16,8 @@ const Products: React.FC<ProductsProps> = () => {
               <th scope="col">EAN</th>
               <th scope="col">Type</th>
               <th scope="col">Weight</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
               <th scope="col">Color</th>
               <th scope="col">Active</th>
               <th scope="col">Actions</th>
@@ -29,6 +31,8 @@ const Products: React.FC<ProductsProps> = () => {
                   ean: string;
                   type: string;
                   weight: string;
+                  quantity: number;
+                  price: number;
                   color: string;
                   active: boolean;
                 },
