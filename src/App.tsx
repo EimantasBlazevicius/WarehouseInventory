@@ -12,7 +12,9 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 const App: React.FC = () => {
-  const [products, setProducts] = useLocalStorage("products", []);
+  const [products, setProducts] = useLocalStorage("products", [
+    { name: "", ean: "", type: "", weight: "", color: "", active: true },
+  ]);
 
   function createProduct(
     name: string,
@@ -21,12 +23,50 @@ const App: React.FC = () => {
     weight: string,
     color: string
   ): boolean {
-    console.log(name, ean, type, weight, color);
-    return true;
+    const newProduct: {
+      name: string;
+      ean: string;
+      type: string;
+      weight: string;
+      color: string;
+      active: boolean;
+    } = {
+      name: name,
+      ean: ean,
+      type: type,
+      weight: weight,
+      color: color,
+      active: true,
+    };
+    try {
+      setProducts([...products, newProduct]);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function deleteProduct(ean: string): boolean {
+    const newProducts = products.filter((product) => product.ean !== ean);
+    console.log(ean);
+    try {
+      setProducts(newProducts);
+
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   return (
-    <ProductsContext.Provider value={{ createProduct: createProduct }}>
+    <ProductsContext.Provider
+      value={{
+        createProduct: createProduct,
+        deleteProduct: deleteProduct,
+        products: products,
+        setProducts: setProducts,
+      }}
+    >
       <Navigation />
       <div className="row">
         <Switch>

@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import Button from "../../commmon/Button";
 
-export interface LineProps {}
+export interface LineProps {
+  product: {
+    name: string;
+    ean: string;
+    type: string;
+    weight: string;
+    color: string;
+    active: boolean;
+  };
+}
 
-const Line: React.FC<LineProps> = () => {
-  const [checked, setChecked] = useState<boolean>(false);
+const Line: React.FC<LineProps> = ({ product }) => {
+  const [checked, setChecked] = useState<boolean>(product.active);
+
   return (
     <tr>
-      <th>Cucumber</th>
-      <td>1234567891234</td>
-      <td>Vegetable</td>
-      <td>1.3kg</td>
-      <td>Red'ish</td>
+      <th>{product.name}</th>
+      <td>{product.ean}</td>
+      <td>{product.type}</td>
+      <td>{product.weight}</td>
+      <td>{product.color}</td>
       <td>
         <input
           type="checkbox"
@@ -22,9 +32,9 @@ const Line: React.FC<LineProps> = () => {
         />
       </td>
       <td>
-        <Button type="primary" text="Edit" />
-        <Button type="info" text="Info" />
-        <Button type="danger" text="Delete" />
+        <Button type="info" text="View" ean={product.ean} />
+        <Button type="primary" text="Edit" ean={product.ean} />
+        <Button type="danger" text="Delete" ean={product.ean} />
       </td>
     </tr>
   );

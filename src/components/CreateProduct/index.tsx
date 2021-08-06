@@ -4,19 +4,19 @@ import ProductsContext from "../../context/ProductsContext";
 export interface CreateProductProps {}
 
 const CreateProduct: React.FC<CreateProductProps> = () => {
-  const [name, setName] = useState<string>();
-  const [ean, setEan] = useState<string>();
-  const [type, setType] = useState<string>();
-  const [weight, setWeight] = useState<string>();
-  const [color, setColor] = useState<string>();
+  const [name, setName] = useState<string>("");
+  const [ean, setEan] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [weight, setWeight] = useState<string>("");
+  const [color, setColor] = useState<string>("");
 
   const { createProduct } = useContext(ProductsContext);
 
   function handleSubmit() {
     if (createProduct(name, ean, type, weight, color)) {
-      //some styling that stuff is OK
+      console.log("Good");
     } else {
-      //Something is wrong with submission
+      console.log("Bad");
     }
   }
 
@@ -105,7 +105,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           className="btn btn-primary"
           onClick={() => handleSubmit()}
         >
-          Submit
+          Create
         </button>
       </form>
     </>
