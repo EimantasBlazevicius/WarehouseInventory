@@ -18,6 +18,7 @@ export interface LineProps {
 const Line: React.FC<LineProps> = ({ product }) => {
   const [checked, setChecked] = useState<boolean>(product.active);
   const { updateProduct } = useContext(ProductsContext);
+  const ZeroQuantityClass = product.quantity === 0 ? "table-secondary" : "";
 
   function handleCheckbox(): void {
     const newVersion = product;
@@ -27,7 +28,7 @@ const Line: React.FC<LineProps> = ({ product }) => {
   }
 
   return (
-    <tr>
+    <tr className={ZeroQuantityClass}>
       <th>{product.name}</th>
       <td>{product.ean}</td>
       <td>{product.type}</td>
