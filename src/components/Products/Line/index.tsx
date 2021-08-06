@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "../../commmon/Button";
 import ProductsContext from "../../../context/ProductsContext";
 
@@ -17,6 +17,9 @@ export interface LineProps {
 
 const Line: React.FC<LineProps> = ({ product }) => {
   const [checked, setChecked] = useState<boolean>(product.active);
+  const [quantity, setQuantity] = useState<number>(product.quantity);
+  const [price, setPrice] = useState<number>(product.price);
+
   const { updateProduct } = useContext(ProductsContext);
   const ZeroQuantityClass = product.quantity === 0 ? "table-secondary" : "";
 
@@ -27,14 +30,37 @@ const Line: React.FC<LineProps> = ({ product }) => {
     setChecked(!checked);
   }
 
+  useEffect(() => {
+    const newVersion = product;
+    newVersion.quantity = quantity;
+    newVersion.price = price;
+    updateProduct(newVersion);
+  }, [quantity, price]);
+
   return (
     <tr className={ZeroQuantityClass}>
       <th>{product.name}</th>
       <td>{product.ean}</td>
       <td>{product.type}</td>
       <td>{product.weight}</td>
-      <td>{product.quantity}</td>
-      <td>{product.price}</td>
+      <td>
+        <input
+          type="number"
+          value={quantity}
+          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
+            setQuantity(parseInt(ev.target.value))
+          }
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          value={price}
+          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
+            setPrice(parseInt(ev.target.value))
+          }
+        />
+      </td>
       <td>{product.color}</td>
       <td>
         <input
