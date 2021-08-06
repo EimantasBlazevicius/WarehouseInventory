@@ -1,6 +1,8 @@
 import React from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import ProductsContext from "./context/ProductsContext";
 // import bootstrap from "bootstrap";
 import Products from "./components/Products";
 import Product from "./components/Product";
@@ -10,8 +12,21 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 const App: React.FC = () => {
+  const [products, setProducts] = useLocalStorage("products", []);
+
+  function createProduct(
+    name: string,
+    ean: string,
+    type: string,
+    weight: string,
+    color: string
+  ): boolean {
+    console.log(name, ean, type, weight, color);
+    return true;
+  }
+
   return (
-    <>
+    <ProductsContext.Provider value={{ createProduct: createProduct }}>
       <Navigation />
       <div className="row">
         <Switch>
@@ -33,7 +48,7 @@ const App: React.FC = () => {
         </Switch>
       </div>
       <Footer />
-    </>
+    </ProductsContext.Provider>
   );
 };
 
