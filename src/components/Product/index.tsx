@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import React, { useState, useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import ProductDetails from "./ProductDetails";
+import Charts from "./Charts";
 
 export interface ProductProps {}
 
@@ -17,6 +18,9 @@ const Product: React.FC<ProductProps> = () => {
   const [active, setActive] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<number>(0);
   const { products } = useContext(ProductsContext);
+  const [prices, setPrices] = useState<number[]>([]);
+  const [quantities, setQuantities] = useState<number[]>([]);
+
   useEffect((): void => {
     try {
       const theProduct = products.filter(
@@ -26,10 +30,12 @@ const Product: React.FC<ProductProps> = () => {
       setEan(theProduct[0].ean);
       setType(theProduct[0].type);
       setWeight(theProduct[0].weight);
-      setQuantity(theProduct[0].quantity[-1]);
-      setPrice(theProduct[0].price[-1]);
+      setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
+      setPrice(theProduct[0].price[theProduct[0].price.length - 1]);
       setColor(theProduct[0].color);
       setActive(theProduct[0].active);
+      setPrices([...theProduct[0].price]);
+      setQuantities([...theProduct[0].quantity]);
     } catch {
       console.log("Could not mount the product");
     }
@@ -37,7 +43,6 @@ const Product: React.FC<ProductProps> = () => {
 
   function handleTabSwitch(tab: number) {
     setActiveTab(tab);
-    console.log(activeTab);
   }
 
   const { id } = useParams<{ id: string }>();
@@ -91,14 +96,14 @@ const Product: React.FC<ProductProps> = () => {
               activeTab === 1 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            1
+            <Charts prices={prices} label="Prices History" />
           </div>
           <div
             className={
               activeTab === 2 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            2
+            <Charts prices={quantities} label="Quantity History" />
           </div>
         </div>
       </div>

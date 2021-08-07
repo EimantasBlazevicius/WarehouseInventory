@@ -3,6 +3,7 @@ Bugs/Issues to be sorted later:
 ZeroQuantityClass -> 0 products does not color instantly
 No 00,00 values -> floats does not happen
 Footer
+Style Product detail and well other stuff
 
 # Getting Started with Create React App
 
