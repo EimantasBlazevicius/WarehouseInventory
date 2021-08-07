@@ -4,7 +4,12 @@ import { useTranslation } from "react-i18next";
 export interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  function handleLanguageChange(language: string): void {
+    i18n.changeLanguage(language);
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -42,6 +47,20 @@ const Navigation: React.FC<NavigationProps> = () => {
                 {t("menu.create")}
               </NavLink>
             </li>
+            <div className="btn-group ms-4">
+              <button
+                className="btn btn-primary"
+                onClick={() => handleLanguageChange("lt")}
+              >
+                LT
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleLanguageChange("en")}
+              >
+                EN
+              </button>
+            </div>
           </ul>
         </div>
       </div>

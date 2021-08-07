@@ -103,5 +103,4 @@ i18n
       escapeValue: false, // react already safes from xss
     },
   });
-
-i18n.changeLanguage("lt");
+i18n.changeLanguage("en");
