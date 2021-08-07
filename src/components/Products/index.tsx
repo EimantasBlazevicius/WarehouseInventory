@@ -3,9 +3,7 @@ import ProductsContext from "../../context/ProductsContext";
 import Line from "./Line";
 import { useTranslation } from "react-i18next";
 
-export interface ProductsProps {}
-
-const Products: React.FC<ProductsProps> = () => {
+const Products: React.FC = () => {
   const { t } = useTranslation();
   const { products } = useContext(ProductsContext);
   return (

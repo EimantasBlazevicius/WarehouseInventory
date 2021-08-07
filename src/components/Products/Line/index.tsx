@@ -53,7 +53,6 @@ const Line: React.FC<LineProps> = ({ product }) => {
 
   return (
     <tr className={ZeroQuantityClass}>
-      {console.log(product)}
       <th>{product.name}</th>
       <td>{product.ean}</td>
       <td>{product.type}</td>

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import ProductsContext from "../../context/ProductsContext";
 import { useTranslation } from "react-i18next";
+import Alert from "../commmon/Alert";
 
 export interface CreateProductProps {}
 
@@ -12,14 +14,21 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
+  const [alert, setAlert] = useState<boolean>(false);
 
   const { t } = useTranslation();
+  let history = useHistory();
 
   const { createProduct } = useContext(ProductsContext);
 
   function handleSubmit() {
     if (createProduct(name, ean, type, weight, color, [quantity], [price])) {
-      console.log("Good");
+      setAlert(true);
+      const alertInterval = setInterval(() => {
+        setAlert(false);
+        clearInterval(alertInterval);
+        history.push("/products");
+      }, 4000);
     } else {
       console.log("Bad");
     }
@@ -175,6 +184,12 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           {t("buttons.createFake")}
         </button>
       </form>
+
+      <Alert
+        type="success"
+        message="Creation was successful, go back to"
+        visible={alert}
+      />
     </>
   );
 };

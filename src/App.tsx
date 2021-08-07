@@ -8,7 +8,6 @@ import Product from "./components/Product";
 import EditProduct from "./components/EditProduct";
 import CreateProduct from "./components/CreateProduct";
 import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
 
 export interface ProductInterface {
   name: string;
@@ -121,7 +120,6 @@ const App: React.FC = () => {
           </Route>
         </Switch>
       </div>
-      <Footer />
     </ProductsContext.Provider>
   );
 };

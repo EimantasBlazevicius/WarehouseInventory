@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router";
 import ProductsContext from "../../context/ProductsContext";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Alert from "../commmon/Alert";
 
 export interface updateObjectInterface {
   name: string;
@@ -21,10 +23,12 @@ const EditProduct: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
+  const [alert, setAlert] = useState<boolean>(false);
 
   const { id } = useParams<{ id: string }>();
 
   const { t } = useTranslation();
+  let history = useHistory();
 
   const { products, updateProduct } = useContext(ProductsContext);
 
@@ -39,7 +43,12 @@ const EditProduct: React.FC = () => {
       color,
     };
     if (updateProduct(newVersion)) {
-      console.log("All Good");
+      setAlert(true);
+      const alertInterval = setInterval(() => {
+        setAlert(false);
+        clearInterval(alertInterval);
+        history.push("/products");
+      }, 4000);
     }
   }
 
@@ -52,8 +61,8 @@ const EditProduct: React.FC = () => {
       setEan(theProduct[0].ean);
       setType(theProduct[0].type);
       setWeight(theProduct[0].weight);
-      setQuantity(theProduct[0].quantity);
-      setPrice(theProduct[0].price);
+      setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
+      setPrice(theProduct[0].price[theProduct[0].price.length - 1]);
       setColor(theProduct[0].color);
     } catch {
       console.log("Could not mount the product");
@@ -180,6 +189,11 @@ const EditProduct: React.FC = () => {
           {t("buttons.update")}
         </button>
       </form>
+      <Alert
+        type="success"
+        message="Edit was successful, go back to"
+        visible={alert}
+      />
     </>
   );
 };

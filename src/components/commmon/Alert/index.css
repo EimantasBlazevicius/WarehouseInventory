@@ -1,0 +1,6 @@
+.alert-css {
+  position: fixed !important;
+  width: 35% !important;
+  right: 20px;
+  bottom: 10px;
+}

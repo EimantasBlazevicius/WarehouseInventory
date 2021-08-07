@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 export interface ProductProps {}
 
-const Product: React.FC<ProductProps> = () => {
+const Product: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [ean, setEan] = useState<string>("");
   const [type, setType] = useState<string>("");
