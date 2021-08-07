@@ -3,9 +3,17 @@ import ProductsContext from "../../context/ProductsContext";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export interface EditProductProps {}
+export interface updateObjectInterface {
+  name: string;
+  ean: string;
+  type: string;
+  weight: string;
+  quantity: number;
+  price: number;
+  color: string;
+}
 
-const EditProduct: React.FC<EditProductProps> = () => {
+const EditProduct: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [ean, setEan] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -21,15 +29,15 @@ const EditProduct: React.FC<EditProductProps> = () => {
   const { products, updateProduct } = useContext(ProductsContext);
 
   function handleUpdate(): void {
-    const newVersion: {
-      name: string;
-      ean: string;
-      type: string;
-      weight: string;
-      quantity: number;
-      price: number;
-      color: string;
-    } = { name, ean, type, weight, quantity, price, color };
+    const newVersion: updateObjectInterface = {
+      name,
+      ean,
+      type,
+      weight,
+      quantity,
+      price,
+      color,
+    };
     if (updateProduct(newVersion)) {
       console.log("All Good");
     }
@@ -123,10 +131,11 @@ const EditProduct: React.FC<EditProductProps> = () => {
             <input
               value={quantity}
               type="number"
+              step=".01"
               className="form-control"
               id="typeName"
               onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
-                setQuantity(parseInt(ev.target.value))
+                setQuantity(parseFloat(ev.target.value))
               }
             />
           </div>
@@ -137,10 +146,11 @@ const EditProduct: React.FC<EditProductProps> = () => {
             <input
               value={price}
               type="number"
+              step=".01"
               className="form-control"
               id="weightName"
               onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
-                setPrice(parseInt(ev.target.value))
+                setPrice(parseFloat(ev.target.value))
               }
             />
           </div>

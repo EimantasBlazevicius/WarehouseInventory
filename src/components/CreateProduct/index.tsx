@@ -118,10 +118,11 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
             <input
               value={quantity}
               type="number"
+              step=".01"
               className="form-control"
               id="typeName"
               onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
-                setQuantity(parseInt(ev.target.value))
+                setQuantity(parseFloat(ev.target.value))
               }
             />
           </div>
@@ -132,10 +133,11 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
             <input
               value={price}
               type="number"
+              step=".01"
               className="form-control"
               id="weightName"
               onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
-                setPrice(parseInt(ev.target.value))
+                setPrice(parseFloat(ev.target.value))
               }
             />
           </div>

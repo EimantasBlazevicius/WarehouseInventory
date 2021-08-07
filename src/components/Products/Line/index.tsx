@@ -61,24 +61,26 @@ const Line: React.FC<LineProps> = ({ product }) => {
       <td>
         <input
           type="number"
+          step=".01"
           value={quantity}
           onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
-            handleQuantityChange(parseInt(ev.target.value))
+            handleQuantityChange(parseFloat(ev.target.value))
           }
           onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
-            setQuantity(parseInt(ev.target.value))
+            setQuantity(parseFloat(ev.target.value))
           }
         />
       </td>
       <td>
         <input
           type="number"
+          step=".01"
           value={price}
           onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
-            handlePriceChange(parseInt(ev.target.value))
+            handlePriceChange(parseFloat(ev.target.value))
           }
           onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
-            setPrice(parseInt(ev.target.value))
+            setPrice(parseFloat(ev.target.value))
           }
         />
       </td>
