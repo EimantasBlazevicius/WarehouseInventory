@@ -1,13 +1,15 @@
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = () => {
+  const { t } = useTranslation();
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          Look at these menu options :o
+          {t("menu.title")}
         </NavLink>
         <button
           className="navbar-toggler"
@@ -28,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                 activeClassName="active"
                 to="/products"
               >
-                Products
+                {t("menu.products")}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -37,7 +39,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                 to="/products/create"
                 activeClassName="active"
               >
-                Create
+                {t("menu.create")}
               </NavLink>
             </li>
           </ul>

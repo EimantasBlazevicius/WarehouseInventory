@@ -4,6 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import ProductDetails from "./ProductDetails";
 import Charts from "./Charts";
+import { useTranslation } from "react-i18next";
 
 export interface ProductProps {}
 
@@ -20,6 +21,7 @@ const Product: React.FC<ProductProps> = () => {
   const { products } = useContext(ProductsContext);
   const [prices, setPrices] = useState<number[]>([]);
   const [quantities, setQuantities] = useState<number[]>([]);
+  const { t } = useTranslation();
 
   useEffect((): void => {
     try {
@@ -56,21 +58,21 @@ const Product: React.FC<ProductProps> = () => {
               type="button"
               onClick={() => handleTabSwitch(0)}
             >
-              Product Details
+              {t("details.productDetails")}
             </button>
             <button
               className={activeTab === 1 ? "nav-link active" : "nav-link"}
               type="button"
               onClick={() => handleTabSwitch(1)}
             >
-              Price History
+              {t("details.priceHistory")}
             </button>
             <button
               className={activeTab === 2 ? "nav-link active" : "nav-link"}
               type="button"
               onClick={() => handleTabSwitch(2)}
             >
-              Quantity History
+              {t("details.quantityHistory")}
             </button>
           </div>
         </nav>
@@ -96,14 +98,14 @@ const Product: React.FC<ProductProps> = () => {
               activeTab === 1 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            <Charts prices={prices} label="Prices History" />
+            <Charts prices={prices} label={t("details.priceHistory")} />
           </div>
           <div
             className={
               activeTab === 2 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            <Charts prices={quantities} label="Quantity History" />
+            <Charts prices={quantities} label={t("details.quantityHistory")} />
           </div>
         </div>
       </div>

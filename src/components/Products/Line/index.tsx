@@ -1,6 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../../commmon/Button";
 import ProductsContext from "../../../context/ProductsContext";
+
+import { useTranslation } from "react-i18next";
 
 export interface LineProps {
   product: {
@@ -26,6 +28,7 @@ const Line: React.FC<LineProps> = ({ product }) => {
 
   const { updateProduct } = useContext(ProductsContext);
   const ZeroQuantityClass = product.quantity[-1] === 0 ? "table-secondary" : "";
+  const { t } = useTranslation();
 
   function handleCheckbox(): void {
     const newVersion = product;
@@ -86,9 +89,9 @@ const Line: React.FC<LineProps> = ({ product }) => {
         />
       </td>
       <td>
-        <Button type="info" text="View" ean={product.ean} />
-        <Button type="primary" text="Edit" ean={product.ean} />
-        <Button type="danger" text="Delete" ean={product.ean} />
+        <Button type="info" text={t("buttons.view")} ean={product.ean} />
+        <Button type="primary" text={t("buttons.edit")} ean={product.ean} />
+        <Button type="danger" text={t("buttons.delete")} ean={product.ean} />
       </td>
     </tr>
   );

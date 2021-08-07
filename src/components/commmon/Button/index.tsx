@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
     const destination = "/products/" + ean;
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
-        <button className={buttonClasses}>View</button>
+        <button className={buttonClasses}>{text}</button>
       </Link>
     );
   }
@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
     const destination = "/products/" + ean + "/edit";
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
-        <button className={buttonClasses}>Edit</button>
+        <button className={buttonClasses}>{text}</button>
       </Link>
     );
   }

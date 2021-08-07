@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import ProductsContext from "../../context/ProductsContext";
+import { useTranslation } from "react-i18next";
 
 export interface CreateProductProps {}
 
@@ -11,6 +12,8 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
+
+  const { t } = useTranslation();
 
   const { createProduct } = useContext(ProductsContext);
 
@@ -51,7 +54,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="productName" className="form-label">
-              Product Name
+              {t("form.name")}
             </label>
             <input
               value={name}
@@ -65,7 +68,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="EAN" className="form-label">
-              European Article Number
+              {t("form.ean")}
             </label>
             <input
               value={ean}
@@ -81,7 +84,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="typeName" className="form-label">
-              Type
+              {t("form.type")}
             </label>
             <input
               value={type}
@@ -95,7 +98,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="weightName" className="form-label">
-              Weight
+              {t("form.weight")}
             </label>
             <input
               value={weight}
@@ -111,7 +114,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="typeName" className="form-label">
-              Quantity
+              {t("form.quantity")}
             </label>
             <input
               value={quantity}
@@ -125,7 +128,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="weightName" className="form-label">
-              Price
+              {t("form.price")}
             </label>
             <input
               value={price}
@@ -141,7 +144,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="colorName" className="form-label">
-              Color
+              {t("form.color")}
             </label>
             <input
               value={color}
@@ -160,7 +163,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           className="btn btn-primary"
           onClick={() => handleSubmit()}
         >
-          Create
+          {t("buttons.create")}
         </button>
 
         <button
@@ -168,7 +171,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
           className="btn ms-2 btn-primary"
           onClick={() => handleSubmitFake()}
         >
-          CreateFake
+          {t("buttons.createFake")}
         </button>
       </form>
     </>

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface EditProductProps {}
 
@@ -12,7 +13,10 @@ const EditProduct: React.FC<EditProductProps> = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
+
   const { id } = useParams<{ id: string }>();
+
+  const { t } = useTranslation();
 
   const { products, updateProduct } = useContext(ProductsContext);
 
@@ -54,7 +58,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="productName" className="form-label">
-              Product Name
+              {t("form.name")}
             </label>
             <input
               value={name}
@@ -68,7 +72,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="EAN" className="form-label">
-              European Article Number
+              {t("form.ean")}
             </label>
             <input
               value={ean}
@@ -84,7 +88,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="typeName" className="form-label">
-              Type
+              {t("form.type")}
             </label>
             <input
               value={type}
@@ -98,7 +102,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="weightName" className="form-label">
-              Weight
+              {t("form.weight")}
             </label>
             <input
               value={weight}
@@ -114,7 +118,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="typeName" className="form-label">
-              Quantity
+              {t("form.quantity")}
             </label>
             <input
               value={quantity}
@@ -128,7 +132,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
           </div>
           <div className="mb-3 col-6">
             <label htmlFor="weightName" className="form-label">
-              Price
+              {t("form.price")}
             </label>
             <input
               value={price}
@@ -144,7 +148,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
         <div className="row">
           <div className="mb-3 col-6">
             <label htmlFor="colorName" className="form-label">
-              Color
+              {t("form.color")}
             </label>
             <input
               value={color}
@@ -163,7 +167,7 @@ const EditProduct: React.FC<EditProductProps> = () => {
           className="btn btn-primary"
           onClick={() => handleUpdate()}
         >
-          Update
+          {t("buttons.update")}
         </button>
       </form>
     </>

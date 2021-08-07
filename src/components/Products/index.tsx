@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import Line from "./Line";
+import { useTranslation } from "react-i18next";
 
 export interface ProductsProps {}
 
 const Products: React.FC<ProductsProps> = () => {
+  const { t } = useTranslation();
   const { products } = useContext(ProductsContext);
   return (
     <div>
@@ -12,15 +14,15 @@ const Products: React.FC<ProductsProps> = () => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">EAN</th>
-              <th scope="col">Type</th>
-              <th scope="col">Weight</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-              <th scope="col">Color</th>
-              <th scope="col">Active</th>
-              <th scope="col">Actions</th>
+              <th scope="col">{t("columns.name")}</th>
+              <th scope="col">{t("columns.ean")}</th>
+              <th scope="col">{t("columns.type")}</th>
+              <th scope="col">{t("columns.weight")}</th>
+              <th scope="col">{t("columns.quantity")}</th>
+              <th scope="col">{t("columns.price")}</th>
+              <th scope="col">{t("columns.color")}</th>
+              <th scope="col">{t("columns.active")}</th>
+              <th scope="col">{t("columns.actions")}</th>
             </tr>
           </thead>
           <tbody>

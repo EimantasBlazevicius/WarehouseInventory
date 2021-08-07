@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export interface ProductDetailsProps {
   name: string;
   ean: string;
@@ -19,6 +21,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   color,
   active,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <div>
@@ -29,7 +32,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <h3>{quantity}</h3>
         <h3>{price}</h3>
         <h3>{color}</h3>
-        <h3>{active && "The product is live"}</h3>
+        <h3>{active && t("productActive")}</h3>
       </div>
     </>
   );
