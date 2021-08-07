@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import React, { useState, useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
+import ProductDetails from "./ProductDetails";
 
 export interface ProductProps {}
 
@@ -14,6 +15,7 @@ const Product: React.FC<ProductProps> = () => {
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
   const [active, setActive] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<number>(0);
   const { products } = useContext(ProductsContext);
   useEffect((): void => {
     try {
@@ -24,8 +26,8 @@ const Product: React.FC<ProductProps> = () => {
       setEan(theProduct[0].ean);
       setType(theProduct[0].type);
       setWeight(theProduct[0].weight);
-      setQuantity(theProduct[0].quantity);
-      setPrice(theProduct[0].price);
+      setQuantity(theProduct[0].quantity[-1]);
+      setPrice(theProduct[0].price[-1]);
       setColor(theProduct[0].color);
       setActive(theProduct[0].active);
     } catch {
@@ -33,17 +35,73 @@ const Product: React.FC<ProductProps> = () => {
     }
   }, []);
 
+  function handleTabSwitch(tab: number) {
+    setActiveTab(tab);
+    console.log(activeTab);
+  }
+
   const { id } = useParams<{ id: string }>();
   return (
     <>
-      <h3>{name}</h3>
-      <h3>{ean}</h3>
-      <h3>{type}</h3>
-      <h3>{weight}</h3>
-      <h3>{quantity}</h3>
-      <h3>{price}</h3>
-      <h3>{color}</h3>
-      <h3>{active && "The product is live"}</h3>
+      <div>
+        <nav>
+          <div className="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              className={activeTab === 0 ? "nav-link active" : "nav-link"}
+              type="button"
+              onClick={() => handleTabSwitch(0)}
+            >
+              Product Details
+            </button>
+            <button
+              className={activeTab === 1 ? "nav-link active" : "nav-link"}
+              type="button"
+              onClick={() => handleTabSwitch(1)}
+            >
+              Price History
+            </button>
+            <button
+              className={activeTab === 2 ? "nav-link active" : "nav-link"}
+              type="button"
+              onClick={() => handleTabSwitch(2)}
+            >
+              Quantity History
+            </button>
+          </div>
+        </nav>
+        <div className="tab-content">
+          <div
+            className={
+              activeTab === 0 ? "tab-pane fade show active" : "tab-pane fade"
+            }
+          >
+            <ProductDetails
+              name={name}
+              ean={ean}
+              type={type}
+              weight={weight}
+              quantity={quantity}
+              price={price}
+              color={color}
+              active={active}
+            />
+          </div>
+          <div
+            className={
+              activeTab === 1 ? "tab-pane fade show active" : "tab-pane fade"
+            }
+          >
+            1
+          </div>
+          <div
+            className={
+              activeTab === 2 ? "tab-pane fade show active" : "tab-pane fade"
+            }
+          >
+            2
+          </div>
+        </div>
+      </div>
     </>
   );
 };

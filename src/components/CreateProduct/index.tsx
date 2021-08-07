@@ -15,7 +15,7 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
   const { createProduct } = useContext(ProductsContext);
 
   function handleSubmit() {
-    if (createProduct(name, ean, type, weight, quantity, price, color)) {
+    if (createProduct(name, ean, type, weight, [quantity], price, color)) {
       console.log("Good");
     } else {
       console.log("Bad");
@@ -34,8 +34,8 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         "type",
         "weight",
         2,
-        16,
-        4,
+        [16],
+        [4],
         "color"
       )
     ) {

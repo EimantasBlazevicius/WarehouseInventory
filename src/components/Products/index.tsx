@@ -31,8 +31,8 @@ const Products: React.FC<ProductsProps> = () => {
                   ean: string;
                   type: string;
                   weight: string;
-                  quantity: number;
-                  price: number;
+                  quantity: number[];
+                  price: number[];
                   color: string;
                   active: boolean;
                 },

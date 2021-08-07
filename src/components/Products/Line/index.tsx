@@ -8,8 +8,8 @@ export interface LineProps {
     ean: string;
     type: string;
     weight: string;
-    quantity: number;
-    price: number;
+    quantity: number[];
+    price: number[];
     color: string;
     active: boolean;
   };
@@ -17,11 +17,15 @@ export interface LineProps {
 
 const Line: React.FC<LineProps> = ({ product }) => {
   const [checked, setChecked] = useState<boolean>(product.active);
-  const [quantity, setQuantity] = useState<number>(product.quantity);
-  const [price, setPrice] = useState<number>(product.price);
+  const [quantity, setQuantity] = useState<number>(
+    product.quantity[product.quantity.length - 1]
+  );
+  const [price, setPrice] = useState<number>(
+    product.price[product.price.length - 1]
+  );
 
   const { updateProduct } = useContext(ProductsContext);
-  const ZeroQuantityClass = product.quantity === 0 ? "table-secondary" : "";
+  const ZeroQuantityClass = product.quantity[-1] === 0 ? "table-secondary" : "";
 
   function handleCheckbox(): void {
     const newVersion = product;
@@ -30,12 +34,18 @@ const Line: React.FC<LineProps> = ({ product }) => {
     setChecked(!checked);
   }
 
-  useEffect(() => {
+  function handleQuantityChange(event: number) {
     const newVersion = product;
-    newVersion.quantity = quantity;
-    newVersion.price = price;
+    newVersion.quantity = [...product.quantity, event];
     updateProduct(newVersion);
-  }, [quantity, price]);
+  }
+
+  function handlePriceChange(event: number) {
+    const newVersion = product;
+    newVersion.price = [...product.price, event];
+    updateProduct(newVersion);
+    console.log(newVersion);
+  }
 
   return (
     <tr className={ZeroQuantityClass}>
@@ -47,7 +57,10 @@ const Line: React.FC<LineProps> = ({ product }) => {
         <input
           type="number"
           value={quantity}
-          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
+          onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
+            handleQuantityChange(parseInt(ev.target.value))
+          }
+          onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
             setQuantity(parseInt(ev.target.value))
           }
         />
@@ -56,7 +69,10 @@ const Line: React.FC<LineProps> = ({ product }) => {
         <input
           type="number"
           value={price}
-          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
+          onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
+            handlePriceChange(parseInt(ev.target.value))
+          }
+          onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
             setPrice(parseInt(ev.target.value))
           }
         />

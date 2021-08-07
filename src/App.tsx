@@ -18,8 +18,8 @@ const App: React.FC = () => {
       type: "",
       weight: "",
       color: "",
-      quantity: 0,
-      price: 0,
+      quantity: [0],
+      price: [0],
       active: true,
     },
   ]);
@@ -30,8 +30,8 @@ const App: React.FC = () => {
     type: string,
     weight: string,
     color: string,
-    quantity: number,
-    price: number
+    quantity: number[],
+    price: number[]
   ): boolean {
     const newProduct: {
       name: string;
@@ -39,8 +39,8 @@ const App: React.FC = () => {
       type: string;
       weight: string;
       color: string;
-      quantity: number;
-      price: number;
+      quantity: number[];
+      price: number[];
       active: boolean;
     } = {
       name: name,
@@ -48,13 +48,12 @@ const App: React.FC = () => {
       type: type,
       weight: weight,
       color: color,
-      quantity: quantity,
-      price: price,
+      quantity: [...quantity],
+      price: [...price],
       active: true,
     };
     try {
       setProducts([...products, newProduct]);
-
       return true;
     } catch {
       return false;
@@ -79,8 +78,8 @@ const App: React.FC = () => {
     type: string;
     weight: string;
     color: string;
-    quantity: number;
-    price: number;
+    quantity: number[];
+    price: number[];
     active: boolean;
   }): boolean {
     const currentProduct = products.filter(
@@ -92,7 +91,6 @@ const App: React.FC = () => {
       );
       products[indexToUpdate] = newVersion;
       setProducts(products);
-
       return true;
     }
 
