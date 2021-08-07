@@ -10,6 +10,17 @@ import CreateProduct from "./components/CreateProduct";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
+export interface ProductInterface {
+  name: string;
+  ean: string;
+  type: string;
+  weight: string;
+  quantity: number[];
+  price: number[];
+  color: string;
+  active: boolean;
+}
+
 const App: React.FC = () => {
   const [products, setProducts] = useLocalStorage("products", [
     {
@@ -33,16 +44,7 @@ const App: React.FC = () => {
     quantity: number[],
     price: number[]
   ): boolean {
-    const newProduct: {
-      name: string;
-      ean: string;
-      type: string;
-      weight: string;
-      color: string;
-      quantity: number[];
-      price: number[];
-      active: boolean;
-    } = {
+    const newProduct: ProductInterface = {
       name: name,
       ean: ean,
       type: type,
@@ -54,6 +56,7 @@ const App: React.FC = () => {
     };
     try {
       setProducts([...products, newProduct]);
+
       return true;
     } catch {
       return false;
@@ -62,7 +65,7 @@ const App: React.FC = () => {
 
   function deleteProduct(ean: string): boolean {
     const newProducts = products.filter((product) => product.ean !== ean);
-    console.log(ean);
+
     try {
       setProducts(newProducts);
 
@@ -72,16 +75,7 @@ const App: React.FC = () => {
     }
   }
 
-  function updateProduct(newVersion: {
-    name: string;
-    ean: string;
-    type: string;
-    weight: string;
-    color: string;
-    quantity: number[];
-    price: number[];
-    active: boolean;
-  }): boolean {
+  function updateProduct(newVersion: ProductInterface): boolean {
     const currentProduct = products.filter(
       (product) => product.ean === newVersion.ean
     );

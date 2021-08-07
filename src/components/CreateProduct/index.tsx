@@ -18,18 +18,17 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
   const { createProduct } = useContext(ProductsContext);
 
   function handleSubmit() {
-    if (createProduct(name, ean, type, weight, [quantity], price, color)) {
+    if (createProduct(name, ean, type, weight, color, [quantity], [price])) {
       console.log("Good");
     } else {
       console.log("Bad");
     }
   }
 
-  function handleSubmitFake() {
+  function handleSubmitFake(): void {
     function getRandomInt(max: number) {
       return Math.floor(Math.random() * max);
     }
-
     if (
       createProduct(
         "TestProduct",

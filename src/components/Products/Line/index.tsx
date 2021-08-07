@@ -27,7 +27,9 @@ const Line: React.FC<LineProps> = ({ product }) => {
   );
 
   const { updateProduct } = useContext(ProductsContext);
-  const ZeroQuantityClass = product.quantity[-1] === 0 ? "table-secondary" : "";
+
+  const ZeroQuantityClass = quantity === 0 ? "table-secondary" : "";
+
   const { t } = useTranslation();
 
   function handleCheckbox(): void {
@@ -47,11 +49,11 @@ const Line: React.FC<LineProps> = ({ product }) => {
     const newVersion = product;
     newVersion.price = [...product.price, event];
     updateProduct(newVersion);
-    console.log(newVersion);
   }
 
   return (
     <tr className={ZeroQuantityClass}>
+      {console.log(product)}
       <th>{product.name}</th>
       <td>{product.ean}</td>
       <td>{product.type}</td>
