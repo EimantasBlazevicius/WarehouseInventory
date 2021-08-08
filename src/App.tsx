@@ -9,13 +9,17 @@ import EditProduct from "./components/EditProduct";
 import CreateProduct from "./components/CreateProduct";
 import Navigation from "./components/Navigation";
 
+export interface PriceInterface {
+  amount: number;
+  date: string;
+}
 export interface ProductInterface {
   name: string;
   ean: string;
   type: string;
   weight: string;
   quantity: number[];
-  price: number[];
+  price: PriceInterface[];
   color: string;
   active: boolean;
 }
@@ -29,10 +33,14 @@ const App: React.FC = () => {
       weight: "",
       color: "",
       quantity: [0],
-      price: [0],
+      price: [{ amount: 0, date: "" }],
       active: true,
     },
   ]);
+  const today = new Date();
+
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
   function createProduct(
     name: string,
@@ -41,7 +49,7 @@ const App: React.FC = () => {
     weight: string,
     color: string,
     quantity: number[],
-    price: number[]
+    price: PriceInterface[]
   ): boolean {
     const newProduct: ProductInterface = {
       name: name,
@@ -74,6 +82,21 @@ const App: React.FC = () => {
     }
   }
 
+  // function updateObject(
+  //   original: ProductInterface,
+  //   update: ProductInterface
+  // ): ProductInterface {
+  //   original.name = update.name;
+  //   original.ean = update.ean;
+  //   original.type = update.type;
+  //   original.weight = update.weight;
+  //   original.color = update.color;
+  //   original.active = update.active;
+  //   original.quantity = [...original.quantity, ...update.quantity];
+  //   original.price = [...original.price, ...update.price];
+  //   return original;
+  // }
+
   function updateProduct(newVersion: ProductInterface): boolean {
     const currentProduct = products.filter(
       (product) => product.ean === newVersion.ean
@@ -82,8 +105,11 @@ const App: React.FC = () => {
       const indexToUpdate = products.findIndex(
         (product) => product.ean === newVersion.ean
       );
-      products[indexToUpdate] = newVersion;
-      setProducts(products);
+      let result = products;
+
+      result[indexToUpdate] = newVersion;
+      console.log(result);
+      setProducts(result);
       return true;
     }
 
@@ -98,6 +124,7 @@ const App: React.FC = () => {
         products,
         setProducts,
         updateProduct,
+        date,
       }}
     >
       <Navigation />

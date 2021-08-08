@@ -42,7 +42,7 @@ const resources = {
       details: {
         productDetails: "Product Details",
         priceHistory: "Price History",
-        QuantityHistory: "Quantity History",
+        quantityHistory: "Quantity History",
       },
     },
   },

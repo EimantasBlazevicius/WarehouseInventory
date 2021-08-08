@@ -1,20 +1,19 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-export interface ChartsProps {
-  prices: number[];
+export interface QuantityProps {
+  data: number[];
   label: string;
 }
 
-const Charts: React.FC<ChartsProps> = ({ prices, label }) => {
-  console.log(prices);
+const Quantity: React.FC<QuantityProps> = ({ data, label }) => {
   const options = {
     title: {
       text: label,
     },
     series: [
       {
-        data: prices,
+        data: data,
       },
     ],
   };
@@ -25,4 +24,4 @@ const Charts: React.FC<ChartsProps> = ({ prices, label }) => {
   );
 };
 
-export default Charts;
+export default Quantity;

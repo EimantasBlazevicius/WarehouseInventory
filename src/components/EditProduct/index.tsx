@@ -4,16 +4,7 @@ import ProductsContext from "../../context/ProductsContext";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Alert from "../commmon/Alert";
-
-export interface updateObjectInterface {
-  name: string;
-  ean: string;
-  type: string;
-  weight: string;
-  quantity: number;
-  price: number;
-  color: string;
-}
+import { ProductInterface } from "../../App";
 
 const EditProduct: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -24,6 +15,7 @@ const EditProduct: React.FC = () => {
   const [price, setPrice] = useState<number>(0);
   const [color, setColor] = useState<string>("");
   const [alert, setAlert] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(true);
 
   const { id } = useParams<{ id: string }>();
 
@@ -32,15 +24,25 @@ const EditProduct: React.FC = () => {
 
   const { products, updateProduct } = useContext(ProductsContext);
 
+  const today = new Date();
+
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
   function handleUpdate(): void {
-    const newVersion: updateObjectInterface = {
+    const theProduct = products.filter(
+      (product: ProductInterface) => product.ean === id
+    );
+    const newVersion: ProductInterface = {
       name,
       ean,
       type,
       weight,
-      quantity,
-      price,
       color,
+      quantity: [...theProduct[0].quantity, quantity],
+      price: [...theProduct[0].price, { amount: price, date }],
+
+      active,
     };
     if (updateProduct(newVersion)) {
       setAlert(true);
@@ -55,15 +57,16 @@ const EditProduct: React.FC = () => {
   useEffect((): void => {
     try {
       const theProduct = products.filter(
-        (product: { ean: string }) => product.ean === id
+        (product: ProductInterface) => product.ean === id
       );
       setName(theProduct[0].name);
       setEan(theProduct[0].ean);
       setType(theProduct[0].type);
       setWeight(theProduct[0].weight);
       setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
-      setPrice(theProduct[0].price[theProduct[0].price.length - 1]);
+      setPrice(theProduct[0].price[theProduct[0].price.length - 1].amount);
       setColor(theProduct[0].color);
+      setActive(theProduct[0].active);
     } catch {
       console.log("Could not mount the product");
     }

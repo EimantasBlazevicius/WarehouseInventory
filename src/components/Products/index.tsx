@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import Line from "./Line";
 import { useTranslation } from "react-i18next";
+import { PriceInterface } from "../../App";
 
 const Products: React.FC = () => {
   const { t } = useTranslation();
@@ -32,7 +33,7 @@ const Products: React.FC = () => {
                   type: string;
                   weight: string;
                   quantity: number[];
-                  price: number[];
+                  price: PriceInterface[];
                   color: string;
                   active: boolean;
                 },

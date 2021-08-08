@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
-
 import React, { useState, useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import ProductDetails from "./ProductDetails";
-import Charts from "./Charts";
 import { useTranslation } from "react-i18next";
-
-export interface ProductProps {}
+import { PriceInterface } from "../../App";
+import Quantity from "./Quantity";
+import Price from "./Price";
 
 const Product: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -19,7 +18,7 @@ const Product: React.FC = () => {
   const [active, setActive] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<number>(0);
   const { products } = useContext(ProductsContext);
-  const [prices, setPrices] = useState<number[]>([]);
+  const [prices, setPrices] = useState<PriceInterface[]>([]);
   const [quantities, setQuantities] = useState<number[]>([]);
   const { t } = useTranslation();
 
@@ -33,7 +32,7 @@ const Product: React.FC = () => {
       setType(theProduct[0].type);
       setWeight(theProduct[0].weight);
       setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
-      setPrice(theProduct[0].price[theProduct[0].price.length - 1]);
+      setPrice(theProduct[0].price[theProduct[0].price.length - 1].amount);
       setColor(theProduct[0].color);
       setActive(theProduct[0].active);
       setPrices([...theProduct[0].price]);
@@ -98,14 +97,14 @@ const Product: React.FC = () => {
               activeTab === 1 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            <Charts prices={prices} label={t("details.priceHistory")} />
+            <Price data={prices} label={t("details.priceHistory")} />
           </div>
           <div
             className={
               activeTab === 2 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            <Charts prices={quantities} label={t("details.quantityHistory")} />
+            <Quantity data={quantities} label={t("details.quantityHistory")} />
           </div>
         </div>
       </div>

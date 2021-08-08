@@ -4,9 +4,7 @@ import ProductsContext from "../../context/ProductsContext";
 import { useTranslation } from "react-i18next";
 import Alert from "../commmon/Alert";
 
-export interface CreateProductProps {}
-
-const CreateProduct: React.FC<CreateProductProps> = () => {
+const CreateProduct: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [ean, setEan] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -21,8 +19,22 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
 
   const { createProduct } = useContext(ProductsContext);
 
+  const today = new Date();
+
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   function handleSubmit() {
-    if (createProduct(name, ean, type, weight, color, [quantity], [price])) {
+    if (
+      createProduct(
+        name,
+        ean,
+        type,
+        weight,
+        color,
+        [quantity],
+        [{ amount: price, date }]
+      )
+    ) {
       setAlert(true);
       const alertInterval = setInterval(() => {
         setAlert(false);
@@ -44,10 +56,9 @@ const CreateProduct: React.FC<CreateProductProps> = () => {
         getRandomInt(999999).toString(),
         "type",
         "weight",
-        2,
+        "color",
         [16],
-        [4],
-        "color"
+        [{ amount: 4, date }]
       )
     ) {
       console.log("Good");

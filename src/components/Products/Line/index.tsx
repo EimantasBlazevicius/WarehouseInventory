@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Button from "../../commmon/Button";
 import ProductsContext from "../../../context/ProductsContext";
+import { PriceInterface } from "../../../App";
 
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +12,7 @@ export interface LineProps {
     type: string;
     weight: string;
     quantity: number[];
-    price: number[];
+    price: PriceInterface[];
     color: string;
     active: boolean;
   };
@@ -23,9 +24,13 @@ const Line: React.FC<LineProps> = ({ product }) => {
     product.quantity[product.quantity.length - 1]
   );
   const [price, setPrice] = useState<number>(
-    product.price[product.price.length - 1]
+    product.price[product.price.length - 1].amount
   );
 
+  var today = new Date();
+
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const { updateProduct } = useContext(ProductsContext);
 
   const ZeroQuantityClass = quantity === 0 ? "table-secondary" : "";
@@ -46,8 +51,8 @@ const Line: React.FC<LineProps> = ({ product }) => {
   }
 
   function handlePriceChange(event: number) {
-    const newVersion = product;
-    newVersion.price = [...product.price, event];
+    let newVersion = product;
+    newVersion.price = [...product.price, { amount: event, date }];
     updateProduct(newVersion);
   }
 
