@@ -8,7 +8,7 @@ export interface PriceProps {
 }
 
 const Price: React.FC<PriceProps> = ({ data, label }) => {
-  const amounts = data.map(({ amount, date }) => [amount, date]);
+  const amounts = data.map(({ amount }) => amount);
   console.log(amounts);
   const options = {
     title: {

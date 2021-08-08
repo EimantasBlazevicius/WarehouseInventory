@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -8,6 +8,7 @@ import Product from "./components/Product";
 import EditProduct from "./components/EditProduct";
 import CreateProduct from "./components/CreateProduct";
 import Navigation from "./components/Navigation";
+import Breadcrumb from "./components/Breadcrumb";
 
 export interface PriceInterface {
   amount: number;
@@ -25,6 +26,8 @@ export interface ProductInterface {
 }
 
 const App: React.FC = () => {
+  const [path, setPath] = useState<string>("/products/9876543219876/edit");
+
   const [products, setProducts] = useLocalStorage("products", [
     {
       name: "",
@@ -82,21 +85,6 @@ const App: React.FC = () => {
     }
   }
 
-  // function updateObject(
-  //   original: ProductInterface,
-  //   update: ProductInterface
-  // ): ProductInterface {
-  //   original.name = update.name;
-  //   original.ean = update.ean;
-  //   original.type = update.type;
-  //   original.weight = update.weight;
-  //   original.color = update.color;
-  //   original.active = update.active;
-  //   original.quantity = [...original.quantity, ...update.quantity];
-  //   original.price = [...original.price, ...update.price];
-  //   return original;
-  // }
-
   function updateProduct(newVersion: ProductInterface): boolean {
     const currentProduct = products.filter(
       (product) => product.ean === newVersion.ean
@@ -128,6 +116,7 @@ const App: React.FC = () => {
       }}
     >
       <Navigation />
+      <Breadcrumb path={path} />
       <div className="row">
         <Switch>
           <Route path="/products/:id/edit">
