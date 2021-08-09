@@ -11,7 +11,7 @@ const Navigation: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/WarehouseInventory/">
           {t("menu.title")}
         </NavLink>
         <button

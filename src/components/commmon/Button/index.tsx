@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
   }
 
   if (type === "info") {
-    const destination = "/products/" + ean;
+    const destination = "/WarehouseInventory/products/" + ean;
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
         <button className={buttonClasses}>{text}</button>
@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
   }
 
   if (type === "primary") {
-    const destination = "/products/" + ean + "/edit";
+    const destination = "/WarehouseInventory/products/" + ean + "/edit";
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
         <button className={buttonClasses}>{text}</button>

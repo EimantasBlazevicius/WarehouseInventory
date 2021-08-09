@@ -17,7 +17,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
         {path !== "/WarehouseInventory/" &&
         path !== "/WarehouseInventory/products" ? (
           <li className="breadcrumb-item">
-            <Link to="/">Products</Link>
+            <Link to="/WarehouseInventory/">Products</Link>
           </li>
         ) : (
           <li className="breadcrumb-item"></li>
@@ -27,7 +27,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
             <Link to={path}>{element}</Link>
           </li>
         ))}
-        {path !== "/" && path !== "/products" ? (
+        {path !== "/WarehouseInventory/" &&
+        path !== "/WarehouseInventory/products" ? (
           <li className="breadcrumb-item active">{lastElement}</li>
         ) : (
           ""
