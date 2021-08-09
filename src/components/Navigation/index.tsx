@@ -31,7 +31,7 @@ const Navigation: React.FC = () => {
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to="/products"
+                to="/WarehouseInventory/products"
               >
                 {t("menu.products")}
               </NavLink>
@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                to="/products/create"
+                to="/WarehouseInventory/products/create"
                 activeClassName="active"
               >
                 {t("menu.create")}

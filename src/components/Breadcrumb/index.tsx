@@ -14,7 +14,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
-        {path !== "/" && path !== "/products" ? (
+        {path !== "/WarehouseInventory/" &&
+        path !== "/WarehouseInventory/products" ? (
           <li className="breadcrumb-item">
             <Link to="/">Products</Link>
           </li>

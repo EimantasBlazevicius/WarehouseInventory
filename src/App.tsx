@@ -26,7 +26,7 @@ export interface ProductInterface {
 }
 
 const App: React.FC = () => {
-  const [path, setPath] = useState<string>("/products");
+  const [path, setPath] = useState<string>("/WarehouseInventory/products");
 
   const location = useLocation();
 
@@ -130,19 +130,19 @@ const App: React.FC = () => {
       <div className="container">
         <div className="row">
           <Switch>
-            <Route path="/products/:id/edit">
+            <Route path="/WarehouseInventory/products/:id/edit">
               <EditProduct />
             </Route>
-            <Route path="/products/create">
+            <Route path="/WarehouseInventory/products/create">
               <CreateProduct />
             </Route>
-            <Route path="/products/:id">
+            <Route path="/WarehouseInventory/products/:id">
               <Product />
             </Route>
-            <Route path="/products">
+            <Route path="/WarehouseInventory/products">
               <Products />
             </Route>
-            <Route path="/" exact>
+            <Route path="/WarehouseInventory/" exact>
               <Products />
             </Route>
           </Switch>
