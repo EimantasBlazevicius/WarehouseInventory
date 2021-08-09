@@ -5,6 +5,6 @@
 
 
 # WarehouseInventory
-The site can be tested here: https://eimantasblazevicius.github.io/WarehouseInventory/
-Refresh does not work properly at https://eimantasblazevicius.github.io/WarehouseInventory/product
-So test data persistance at https://eimantasblazevicius.github.io/WarehouseInventory/
+The site can be tested here: https://eimantasblazevicius.github.io/WarehouseInventory/  
+Refresh does not work properly at https://eimantasblazevicius.github.io/WarehouseInventory/product  
+So test data persistance at https://eimantasblazevicius.github.io/WarehouseInventory/  
