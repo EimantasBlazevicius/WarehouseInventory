@@ -1,9 +1,3 @@
-Bugs/Issues to be sorted later:
-
-No 00,00 values -> floats does not happen
-Footer
-Style Product detail and well other stuff
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

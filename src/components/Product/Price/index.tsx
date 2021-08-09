@@ -8,10 +8,17 @@ export interface PriceProps {
 }
 
 const Price: React.FC<PriceProps> = ({ data, label }) => {
-  const amounts = data.map(({ amount }) => amount);
+  const amounts = data.map(({ amount, date }) => ({
+    y: amount,
+    x: new Date(date).getTime(),
+  }));
   const options = {
     title: {
       text: label,
+    },
+    xAxis: {
+      type: "datetime",
+      // max: amounts[amounts.length - 1].x,
     },
     series: [
       {
