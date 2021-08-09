@@ -37,15 +37,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="offset-1 col-5 mt-4">
           <h1 className="display-5">{name}</h1>
-          <p className="text-muted">EAN: {ean}</p>
-          <>Price</>
+          <p className="text-muted">
+            {t("columns.ean")}: {ean}
+          </p>
+          {t("columns.price")}
           <h3 style={{ color: "red" }}>${price}</h3>
           <p>Details</p>
           <p>
-            Type: {type}, Weight: {weight}, Color: {color}
+            {t("columns.type")}: {type}, {t("columns.weight")}: {weight},{" "}
+            {t("columns.color")}: {color}
           </p>
           <p>
-            Currently {quantity !== 0 ? quantity + " in stock" : "Out of stock"}
+            {t("stock.currently")}{" "}
+            {quantity !== 0
+              ? quantity + t("stock.instock")
+              : t("stock.outstock")}
           </p>
           <p>{active && t("productActive")}</p>
         </div>

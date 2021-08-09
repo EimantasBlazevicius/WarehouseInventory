@@ -39,9 +39,15 @@ const resources = {
         color: "Color",
       },
       details: {
+        details: "Detalės",
         productDetails: "Product Details",
         priceHistory: "Price History",
         quantityHistory: "Quantity History",
+      },
+      stock: {
+        currently: "Currently ",
+        instock: " in stock",
+        outstock: "Out of Stock",
       },
     },
   },
@@ -82,9 +88,15 @@ const resources = {
         color: "Spalva",
       },
       details: {
+        details: "Detalės",
         productDetails: "Produkto informacija",
         priceHistory: "Kainų istorija",
         quantityHistory: "Kiekio istorija",
+      },
+      stock: {
+        currently: "Dabar ",
+        instock: " vietoje",
+        outstock: "Neturime",
       },
     },
   },

@@ -18,7 +18,6 @@ const Price: React.FC<PriceProps> = ({ data, label }) => {
     },
     xAxis: {
       type: "datetime",
-      // max: amounts[amounts.length - 1].x,
     },
     series: [
       {
