@@ -55,56 +55,63 @@ const Line: React.FC<LineProps> = ({ product }) => {
     newVersion.price = [...product.price, { amount: event, date }];
     updateProduct(newVersion);
   }
-
-  return (
-    <React.Fragment>
-      <tr className={ZeroQuantityClass}>
-        <th>{product.name}</th>
-        <td>{product.ean}</td>
-        <td>{product.type}</td>
-        <td>{product.weight}</td>
-        <td>
-          <input
-            type="number"
-            step=".01"
-            value={quantity}
-            onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
-              handleQuantityChange(parseFloat(ev.target.value))
-            }
-            onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
-              setQuantity(parseFloat(ev.target.value))
-            }
-          />
-        </td>
-        <td>
-          <input
-            type="number"
-            step=".01"
-            value={price}
-            onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
-              handlePriceChange(parseFloat(ev.target.value))
-            }
-            onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
-              setPrice(parseFloat(ev.target.value))
-            }
-          />
-        </td>
-        <td>{product.color}</td>
-        <td>
-          <input
-            type="checkbox"
-            defaultChecked={checked}
-            onChange={() => handleCheckbox()}
-          />
-        </td>
-        <td>
-          <Button type="info" text={t("buttons.view")} ean={product.ean} />
-          <Button type="primary" text={t("buttons.edit")} ean={product.ean} />
-          <Button type="danger" text={t("buttons.delete")} ean={product.ean} />
-        </td>
-      </tr>
-    </React.Fragment>
-  );
+  if (product.ean === "") {
+    return <React.Fragment></React.Fragment>;
+  } else {
+    return (
+      <React.Fragment>
+        <tr className={ZeroQuantityClass}>
+          <th>{product.name}</th>
+          <td>{product.ean}</td>
+          <td>{product.type}</td>
+          <td>{product.weight}</td>
+          <td>
+            <input
+              type="number"
+              step=".01"
+              value={quantity}
+              onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
+                handleQuantityChange(parseFloat(ev.target.value))
+              }
+              onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
+                setQuantity(parseFloat(ev.target.value))
+              }
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              step=".01"
+              value={price}
+              onBlur={(ev: React.FocusEvent<HTMLInputElement>): void =>
+                handlePriceChange(parseFloat(ev.target.value))
+              }
+              onChange={(ev: React.FocusEvent<HTMLInputElement>): void =>
+                setPrice(parseFloat(ev.target.value))
+              }
+            />
+          </td>
+          <td>{product.color}</td>
+          <td>
+            <input
+              type="checkbox"
+              defaultChecked={checked}
+              onChange={() => handleCheckbox()}
+            />
+          </td>
+          <td>
+            <Button type="info" text={t("buttons.view")} ean={product.ean} />
+            <Button type="primary" text={t("buttons.edit")} ean={product.ean} />
+            <Button
+              type="danger"
+              text={t("buttons.delete")}
+              ean={product.ean}
+            />
+          </td>
+        </tr>
+      </React.Fragment>
+    );
+  }
 };
 
 export default Line;
