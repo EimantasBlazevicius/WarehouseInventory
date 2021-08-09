@@ -119,7 +119,6 @@ const App: React.FC = () => {
         setProducts,
         updateProduct,
         date,
-        setPath,
       }}
     >
       <div className="container-fluid">

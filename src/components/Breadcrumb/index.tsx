@@ -8,7 +8,10 @@ export interface BreadcrumbProps {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
   const pathList: string[] = path
     .split("/")
-    .filter((path) => path !== "" && path !== "products");
+    .filter(
+      (path) =>
+        path !== "" && path !== "products" && path !== "WarehouseInventory"
+    );
   const lastElement = pathList.pop();
 
   return (

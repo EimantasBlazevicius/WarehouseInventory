@@ -99,7 +99,7 @@ const Product: React.FC = () => {
               activeTab === 1 ? "tab-pane fade show active" : "tab-pane fade"
             }
           >
-            <Price data={prices.splice(-5)} label={t("details.priceHistory")} />
+            <Price data={prices.slice(-5)} label={t("details.priceHistory")} />
           </div>
           <div
             className={
@@ -107,7 +107,7 @@ const Product: React.FC = () => {
             }
           >
             <Quantity
-              data={quantities.splice(-5)}
+              data={quantities.slice(-5)}
               label={t("details.quantityHistory")}
             />
           </div>
