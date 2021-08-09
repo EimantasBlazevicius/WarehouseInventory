@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/WarehouseInventory/static/css/main.f8408279.chunk.css",
-    "main.js": "/WarehouseInventory/static/js/main.bb77529f.chunk.js",
-    "main.js.map": "/WarehouseInventory/static/js/main.bb77529f.chunk.js.map",
+    "main.js": "/WarehouseInventory/static/js/main.dfed1457.chunk.js",
+    "main.js.map": "/WarehouseInventory/static/js/main.dfed1457.chunk.js.map",
     "runtime-main.js": "/WarehouseInventory/static/js/runtime-main.d467b162.js",
     "runtime-main.js.map": "/WarehouseInventory/static/js/runtime-main.d467b162.js.map",
     "static/css/2.983f79de.chunk.css": "/WarehouseInventory/static/css/2.983f79de.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.983f79de.chunk.css",
     "static/js/2.211ce19e.chunk.js",
     "static/css/main.f8408279.chunk.css",
-    "static/js/main.bb77529f.chunk.js"
+    "static/js/main.dfed1457.chunk.js"
   ]
 }
