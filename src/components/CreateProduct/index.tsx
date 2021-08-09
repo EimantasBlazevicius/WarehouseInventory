@@ -68,7 +68,7 @@ const CreateProduct: React.FC = () => {
   }
 
   return (
-    <React.Component>
+    <React.Fragment>
       <form>
         <div className="row">
           <div className="mb-3 col-6">
@@ -201,7 +201,7 @@ const CreateProduct: React.FC = () => {
         message="Creation was successful, go back to"
         visible={alert}
       />
-    </React.Component>
+    </React.Fragment>
   );
 };
 

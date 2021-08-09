@@ -9,7 +9,7 @@ const Products: React.FC = () => {
   const { products } = useContext(ProductsContext);
 
   return (
-    <div>
+    <React.Fragment>
       <div>
         <table className="table">
           <thead>
@@ -46,7 +46,7 @@ const Products: React.FC = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

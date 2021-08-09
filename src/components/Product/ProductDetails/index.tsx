@@ -26,7 +26,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   const { t } = useTranslation();
 
   return (
-    <React.Component>
+    <React.Fragment>
       <div className="row mt-3">
         <div className="offset-1 col-4">
           <img
@@ -50,7 +50,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           <p>{active && t("productActive")}</p>
         </div>
       </div>
-    </React.Component>
+    </React.Fragment>
   );
 };
 

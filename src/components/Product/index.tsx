@@ -50,7 +50,7 @@ const Product: React.FC = () => {
   }
 
   return (
-    <React.Component>
+    <React.Fragment>
       <div>
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -110,7 +110,7 @@ const Product: React.FC = () => {
           </div>
         </div>
       </div>
-    </React.Component>
+    </React.Fragment>
   );
 };
 

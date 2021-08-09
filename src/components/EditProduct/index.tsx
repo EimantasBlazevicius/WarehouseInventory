@@ -72,7 +72,7 @@ const EditProduct: React.FC = () => {
   }
 
   return (
-    <React.Component>
+    <React.Fragment>
       <form>
         <div className="row">
           <div className="mb-3 col-6">
@@ -196,7 +196,7 @@ const EditProduct: React.FC = () => {
         message="Edit was successful, go back to"
         visible={alert}
       />
-    </React.Component>
+    </React.Fragment>
   );
 };
 
