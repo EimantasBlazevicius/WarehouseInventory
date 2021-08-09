@@ -6,24 +6,23 @@ export interface BreadcrumbProps {
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
-  const pathList = path.split("/");
-  console.log(path);
+  const pathList: string[] = path
+    .split("/")
+    .filter((path) => path !== "" && path !== "products");
+
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
         {path !== "/" && path !== "/products" ? (
-          <li className="breadcrumb-item"></li>
+          <li className="breadcrumb-item">Products</li>
         ) : (
           ""
         )}
-        {pathList.forEach((element) => {
-          {
-            console.log(element);
-          }
+        {pathList.map((element) => (
           <li className="breadcrumb-item">
             <Link to={path}>{element}</Link>
-          </li>;
-        })}
+          </li>
+        ))}
       </ol>
     </nav>
   );

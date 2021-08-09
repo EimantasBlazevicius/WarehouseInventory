@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import ProductsContext from "./context/ProductsContext";
 import Products from "./components/Products";
@@ -26,7 +26,9 @@ export interface ProductInterface {
 }
 
 const App: React.FC = () => {
-  const [path, setPath] = useState<string>("/products/9876543219876/edit");
+  const [path, setPath] = useState<string>("/products");
+
+  const location = useLocation();
 
   const [products, setProducts] = useLocalStorage("products", [
     {
@@ -40,10 +42,14 @@ const App: React.FC = () => {
       active: true,
     },
   ]);
-  const today = new Date();
 
+  const today = new Date();
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+  useEffect(() => {
+    setPath(location.pathname);
+  }, [location]);
 
   function createProduct(
     name: string,
@@ -113,6 +119,7 @@ const App: React.FC = () => {
         setProducts,
         updateProduct,
         date,
+        setPath,
       }}
     >
       <Navigation />

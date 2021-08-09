@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import placeholder480 from "../../../images/placeholder480.png";
 
@@ -23,8 +24,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   active,
 }) => {
   const { t } = useTranslation();
+
   return (
-    <>
+    <React.Component>
       <div className="row mt-3">
         <div className="offset-1 col-4">
           <img
@@ -48,16 +50,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           <p>{active && t("productActive")}</p>
         </div>
       </div>
-
-      {/* <h3>{name}</h3>
-        <h3>{ean}</h3>
-        <h3>{type}</h3>
-        <h3>{weight}</h3>
-        <h3>{quantity}</h3>
-        <h3>{price}</h3>
-        <h3>{color}</h3>
-        <h3>{active && t("productActive")}</h3> */}
-    </>
+    </React.Component>
   );
 };
 

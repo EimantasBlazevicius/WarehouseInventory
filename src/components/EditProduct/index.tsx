@@ -25,9 +25,26 @@ const EditProduct: React.FC = () => {
   const { products, updateProduct } = useContext(ProductsContext);
 
   const today = new Date();
-
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+  useEffect((): void => {
+    try {
+      const theProduct = products.filter(
+        (product: ProductInterface) => product.ean === id
+      );
+      setName(theProduct[0].name);
+      setEan(theProduct[0].ean);
+      setType(theProduct[0].type);
+      setWeight(theProduct[0].weight);
+      setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
+      setPrice(theProduct[0].price[theProduct[0].price.length - 1].amount);
+      setColor(theProduct[0].color);
+      setActive(theProduct[0].active);
+    } catch {
+      console.log("Could not mount the product");
+    }
+  }, []);
 
   function handleUpdate(): void {
     const theProduct = products.filter(
@@ -54,26 +71,8 @@ const EditProduct: React.FC = () => {
     }
   }
 
-  useEffect((): void => {
-    try {
-      const theProduct = products.filter(
-        (product: ProductInterface) => product.ean === id
-      );
-      setName(theProduct[0].name);
-      setEan(theProduct[0].ean);
-      setType(theProduct[0].type);
-      setWeight(theProduct[0].weight);
-      setQuantity(theProduct[0].quantity[theProduct[0].quantity.length - 1]);
-      setPrice(theProduct[0].price[theProduct[0].price.length - 1].amount);
-      setColor(theProduct[0].color);
-      setActive(theProduct[0].active);
-    } catch {
-      console.log("Could not mount the product");
-    }
-  }, []);
-
   return (
-    <>
+    <React.Component>
       <form>
         <div className="row">
           <div className="mb-3 col-6">
@@ -197,7 +196,7 @@ const EditProduct: React.FC = () => {
         message="Edit was successful, go back to"
         visible={alert}
       />
-    </>
+    </React.Component>
   );
 };
 

@@ -9,6 +9,7 @@ export interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
   const { deleteProduct } = useContext(ProductsContext);
+
   const buttonClasses = "text-light ms-1 btn btn-" + type;
   if (type === "danger") {
     return (
@@ -35,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
       </Link>
     );
   }
+
   return <button className={buttonClasses}>{text}</button>;
 };
 

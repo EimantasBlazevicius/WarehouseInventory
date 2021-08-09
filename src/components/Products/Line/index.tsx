@@ -27,15 +27,15 @@ const Line: React.FC<LineProps> = ({ product }) => {
     product.price[product.price.length - 1].amount
   );
 
-  var today = new Date();
+  const { t } = useTranslation();
 
-  var date =
+  const today = new Date();
+  const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
   const { updateProduct } = useContext(ProductsContext);
 
   const ZeroQuantityClass = quantity === 0 ? "table-secondary" : "";
-
-  const { t } = useTranslation();
 
   function handleCheckbox(): void {
     const newVersion = product;
@@ -44,13 +44,13 @@ const Line: React.FC<LineProps> = ({ product }) => {
     setChecked(!checked);
   }
 
-  function handleQuantityChange(event: number) {
+  function handleQuantityChange(event: number): void {
     const newVersion = product;
     newVersion.quantity = [...product.quantity, event];
     updateProduct(newVersion);
   }
 
-  function handlePriceChange(event: number) {
+  function handlePriceChange(event: number): void {
     let newVersion = product;
     newVersion.price = [...product.price, { amount: event, date }];
     updateProduct(newVersion);

@@ -20,7 +20,10 @@ const Product: React.FC = () => {
   const { products } = useContext(ProductsContext);
   const [prices, setPrices] = useState<PriceInterface[]>([]);
   const [quantities, setQuantities] = useState<number[]>([]);
+
   const { t } = useTranslation();
+
+  const { id } = useParams<{ id: string }>();
 
   useEffect((): void => {
     try {
@@ -46,9 +49,8 @@ const Product: React.FC = () => {
     setActiveTab(tab);
   }
 
-  const { id } = useParams<{ id: string }>();
   return (
-    <>
+    <React.Component>
       <div>
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -108,7 +110,7 @@ const Product: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Component>
   );
 };
 

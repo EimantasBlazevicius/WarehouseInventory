@@ -7,6 +7,7 @@ import { PriceInterface } from "../../App";
 const Products: React.FC = () => {
   const { t } = useTranslation();
   const { products } = useContext(ProductsContext);
+
   return (
     <div>
       <div>

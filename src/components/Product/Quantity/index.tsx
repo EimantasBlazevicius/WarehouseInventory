@@ -17,6 +17,7 @@ const Quantity: React.FC<QuantityProps> = ({ data, label }) => {
       },
     ],
   };
+
   return (
     <div>
       <HighchartsReact highcharts={Highcharts} options={options} />

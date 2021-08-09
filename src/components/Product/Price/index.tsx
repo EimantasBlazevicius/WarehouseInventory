@@ -9,7 +9,6 @@ export interface PriceProps {
 
 const Price: React.FC<PriceProps> = ({ data, label }) => {
   const amounts = data.map(({ amount }) => amount);
-  console.log(amounts);
   const options = {
     title: {
       text: label,
@@ -20,6 +19,7 @@ const Price: React.FC<PriceProps> = ({ data, label }) => {
       },
     ],
   };
+
   return (
     <div>
       <HighchartsReact highcharts={Highcharts} options={options} />

@@ -20,10 +20,10 @@ const CreateProduct: React.FC = () => {
   const { createProduct } = useContext(ProductsContext);
 
   const today = new Date();
-
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  function handleSubmit() {
+
+  function handleSubmit(): void {
     if (
       createProduct(
         name,
@@ -68,7 +68,7 @@ const CreateProduct: React.FC = () => {
   }
 
   return (
-    <>
+    <React.Component>
       <form>
         <div className="row">
           <div className="mb-3 col-6">
@@ -201,7 +201,7 @@ const CreateProduct: React.FC = () => {
         message="Creation was successful, go back to"
         visible={alert}
       />
-    </>
+    </React.Component>
   );
 };
 
