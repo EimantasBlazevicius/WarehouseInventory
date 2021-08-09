@@ -122,26 +122,31 @@ const App: React.FC = () => {
         setPath,
       }}
     >
-      <Navigation />
-      <Breadcrumb path={path} />
-      <div className="row">
-        <Switch>
-          <Route path="/products/:id/edit">
-            <EditProduct />
-          </Route>
-          <Route path="/products/create">
-            <CreateProduct />
-          </Route>
-          <Route path="/products/:id">
-            <Product />
-          </Route>
-          <Route path="/products">
-            <Products />
-          </Route>
-          <Route path="/" exact>
-            <Products />
-          </Route>
-        </Switch>
+      <div className="container-fluid">
+        <Navigation />
+        <Breadcrumb path={path} />
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <Switch>
+            <Route path="/products/:id/edit">
+              <EditProduct />
+            </Route>
+            <Route path="/products/create">
+              <CreateProduct />
+            </Route>
+            <Route path="/products/:id">
+              <Product />
+            </Route>
+            <Route path="/products">
+              <Products />
+            </Route>
+            <Route path="/" exact>
+              <Products />
+            </Route>
+          </Switch>
+        </div>
       </div>
     </ProductsContext.Provider>
   );

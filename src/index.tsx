@@ -8,11 +8,9 @@ import "./config/localization/i18n";
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="container">
-      <Router>
-        <App />
-      </Router>
-    </div>
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -19,7 +19,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
             <Link to="/">Products</Link>
           </li>
         ) : (
-          <li className="breadcrumb-item">Products</li>
+          <li className="breadcrumb-item"></li>
         )}
         {pathList.map((element) => (
           <li className="breadcrumb-item">
