@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 const Navigation: React.FC = () => {
   const { t, i18n } = useTranslation();
 
+  const domain = "/WarehouseInventory/";
+
   function handleLanguageChange(language: string): void {
     i18n.changeLanguage(language);
   }
@@ -11,7 +13,7 @@ const Navigation: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/WarehouseInventory/">
+        <NavLink className="navbar-brand" to={domain}>
           {t("menu.title")}
         </NavLink>
         <button
@@ -31,7 +33,7 @@ const Navigation: React.FC = () => {
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to="/WarehouseInventory/products"
+                to={domain + "products"}
               >
                 {t("menu.products")}
               </NavLink>
@@ -39,7 +41,7 @@ const Navigation: React.FC = () => {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                to="/WarehouseInventory/products/create"
+                to={domain + "products/create"}
                 activeClassName="active"
               >
                 {t("menu.create")}

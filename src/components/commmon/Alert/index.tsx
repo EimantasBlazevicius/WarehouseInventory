@@ -8,13 +8,14 @@ export interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ message, type, visible }) => {
+  const domain = "/WarehouseInventory/";
   const classValue = "alert alert-" + type + " alert-css";
   const classValueHidden = classValue + " d-none";
   if (visible) {
     return (
       <div className={classValue} role="alert">
         {message + " "}
-        <Link to="/products" className="alert-link">
+        <Link to={domain + "/products"} className="alert-link">
           products list.
         </Link>
       </div>
@@ -23,7 +24,7 @@ const Alert: React.FC<AlertProps> = ({ message, type, visible }) => {
     return (
       <div className={classValueHidden} role="alert">
         {message + " "}
-        <Link to="/products" className="alert-link">
+        <Link to={domain + "/products"} className="alert-link">
           products list.
         </Link>
       </div>

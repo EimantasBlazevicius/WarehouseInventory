@@ -8,6 +8,7 @@ export interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
+  const domain = "/WarehouseInventory/";
   const { deleteProduct } = useContext(ProductsContext);
 
   const buttonClasses = "text-light ms-1 btn btn-" + type;
@@ -20,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
   }
 
   if (type === "info") {
-    const destination = "/WarehouseInventory/products/" + ean;
+    const destination = domain + "products/" + ean;
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
         <button className={buttonClasses}>{text}</button>
@@ -29,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
   }
 
   if (type === "primary") {
-    const destination = "/WarehouseInventory/products/" + ean + "/edit";
+    const destination = domain + "products/" + ean + "/edit";
     return (
       <Link style={{ textDecoration: "none" }} to={destination}>
         <button className={buttonClasses}>{text}</button>
