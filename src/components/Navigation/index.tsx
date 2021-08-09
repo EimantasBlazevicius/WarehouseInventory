@@ -1,10 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const Navigation: React.FC = () => {
+const Navigation: React.FC<{ domain: string }> = ({ domain }) => {
   const { t, i18n } = useTranslation();
-
-  const domain = "/WarehouseInventory/";
 
   function handleLanguageChange(language: string): void {
     i18n.changeLanguage(language);

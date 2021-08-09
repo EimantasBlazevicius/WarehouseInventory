@@ -43,6 +43,7 @@ const App: React.FC = () => {
     },
   ]);
 
+  const domain = "/WarehouseInventory/";
   const today = new Date();
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -119,11 +120,12 @@ const App: React.FC = () => {
         setProducts,
         updateProduct,
         date,
+        domain,
       }}
     >
       <div className="container-fluid">
-        <Navigation />
-        <Breadcrumb path={path} />
+        <Navigation domain={domain} />
+        <Breadcrumb path={path} domain={domain} />
       </div>
 
       <div className="container">

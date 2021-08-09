@@ -1,5 +1,7 @@
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
+import ProductsContext from "../../../context/ProductsContext";
 
 export interface AlertProps {
   message: string;
@@ -8,7 +10,7 @@ export interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ message, type, visible }) => {
-  const domain = "/WarehouseInventory/";
+  const { domain } = useContext(ProductsContext);
   const classValue = "alert alert-" + type + " alert-css";
   const classValueHidden = classValue + " d-none";
   if (visible) {
@@ -26,7 +28,8 @@ const Alert: React.FC<AlertProps> = ({ message, type, visible }) => {
         {message + " "}
         <Link to={domain + "/products"} className="alert-link">
           products list.
-        </Link>
+        </Link>{" "}
+        Redirecting in 4 seconds.
       </div>
     );
   }

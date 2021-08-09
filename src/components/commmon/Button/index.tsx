@@ -8,8 +8,7 @@ export interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ type, text, ean }) => {
-  const domain = "/WarehouseInventory/";
-  const { deleteProduct } = useContext(ProductsContext);
+  const { deleteProduct, domain } = useContext(ProductsContext);
 
   const buttonClasses = "text-light ms-1 btn btn-" + type;
   if (type === "danger") {

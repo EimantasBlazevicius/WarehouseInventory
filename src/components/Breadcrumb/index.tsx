@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export interface BreadcrumbProps {
   path: string;
+  domain: string;
 }
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
-  const domain = "/WarehouseInventory/";
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ path, domain }) => {
   const pathList: string[] = path
     .split("/")
     .filter(
