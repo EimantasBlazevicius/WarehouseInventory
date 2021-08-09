@@ -25,11 +25,13 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path }) => {
         ) : (
           <li className="breadcrumb-item"></li>
         )}
+
         {pathList.map((element) => (
           <li className="breadcrumb-item">
-            <Link to={path}>{element}</Link>
+            <Link to={path.split(element)[0] + element}>{element}</Link>
           </li>
         ))}
+
         {path !== domain && path !== domain + "products" ? (
           <li className="breadcrumb-item active">{lastElement}</li>
         ) : (
